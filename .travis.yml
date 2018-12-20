@@ -31,7 +31,7 @@ jobs:
           branch: master
 
       after_deploy:
-        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/tomcat-gdal-grass/mVaAVk_28YRugrX0DqO_skhl9FQ=
 
     - stage: 'Secondary image: Tomcat + Gdal + Grass + PostgreSQL + PostGIS'
       before_script:
@@ -77,4 +77,4 @@ jobs:
           branch: master
 
       after_deploy:
-        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/tomcat-gdal-grass-postgis-r/ivrpv4H3Trkn9UkrDsZmHPDfeW8=
