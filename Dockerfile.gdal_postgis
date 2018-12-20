@@ -13,3 +13,16 @@ RUN apt-get install wget -y \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add \
     && apt-get update \
     && apt-get install postgis postgresql-9.6-postgis-2.3 postgresql-9.6-postgis-2.3-scripts -y
+
+ARG BUILD_DATE=$BUILD_DATE
+ARG TRAVIS_COMMIT=$TRAVIS_COMMIT
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+          org.label-schema.name="Web, GIS and image processing Docker Image" \
+          org.label-schema.description="SGS Docker image for Web, GIS and image processing" \
+          org.label-schema.url="https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass" \
+          org.label-schema.vcs-ref=$TRAVIS_COMMIT \
+          org.label-schema.vcs-url="https://github.com/autimio/docker-images-gis" \
+          org.label-schema.vendor="Autímio Meira Brito Filho" \
+          org.label-schema.version=$TRAVIS_COMMIT \
+          org.label-schema.schema-version="1.0"
