@@ -2,19 +2,19 @@
 
 Automated build for docker image used by SGS for Web applicatons that requires GIS and image processing.
 
-# Image: autimio/tomcat-gdal-grass (Dockerfile.gdal)
+### Image: autimio/tomcat-gdal-grass (Dockerfile.gdal)
 This image is based on tomcat:8.5 and contains:
  - GDAL
  - GRASS7
  - Git, maven , curl, cmake, python and some other tools required to build applications above
  
- ## DockerHub
+ #### DockerHub
 
 `docker pull autimio/tomcat-gdal-grass`
 
 https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass
 
-# Image: autimio/tomcat-gdal-grass-postgis (Dockerfile.gdal_postgis)
+### Image: autimio/tomcat-gdal-grass-postgis (Dockerfile.gdal_postgis)
 This image is based on autimio/tomcat-gdal-grass:latest and contains:
  - GDAL
  - GRASS7
@@ -22,13 +22,13 @@ This image is based on autimio/tomcat-gdal-grass:latest and contains:
  - PostGIS
  - Git, maven , curl, cmake, python and some other tools required to build applications above
  
- ## DockerHub
+ #### DockerHub
 
 `docker pull autimio/tomcat-gdal-grass-postgis`
 
 https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass-postgis
 
-# Image: autimio/tomcat-gdal-grass-postgis-r (Dockerfile.gdal_postgis_r)
+### Image: autimio/tomcat-gdal-grass-postgis-r (Dockerfile.gdal_postgis_r)
 This image is based on autimio/tomcat-gdal-grass-postgis:latest and contains:
  - GDAL
  - GRASS7
@@ -37,7 +37,7 @@ This image is based on autimio/tomcat-gdal-grass-postgis:latest and contains:
  - PostGIS
  - Git, maven , curl, cmake, python and some other tools required to build applications above
  
- ## DockerHub
+ #### DockerHub
 
 `docker pull autimio/tomcat-gdal-grass-postgis-r`
 
