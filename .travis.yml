@@ -1,0 +1,80 @@
+language: bash
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - CONTAINER_IMAGE_PRIMARY=tomcat-gdal-grass
+    - CONTAINER_IMAGE_SECONDARY=tomcat-gdal-grass-postgis
+    - CONTAINER_IMAGE_TERTIARY=tomcat-gdal-grass-postgis-r
+
+jobs:
+  include:
+    - stage: 'Primary image: Tomcat + Gdal + Grass'
+      before_script:
+        - export BUILD_DATE=$(date '+%d/%m/%Y %T UTC' -u)
+        - docker pull $USERNAME/$CONTAINER_IMAGE_PRIMARY:latest || true
+
+      script:
+        - docker build --cache-from $USERNAME/$CONTAINER_IMAGE_PRIMARY:latest --build-arg BUILD_DATE="${BUILD_DATE}" --build-arg TRAVIS_COMMIT="${TRAVIS_COMMIT}" --tag $USERNAME/$CONTAINER_IMAGE_PRIMARY:$TRAVIS_COMMIT --tag $USERNAME/$CONTAINER_IMAGE_PRIMARY:latest -f Dockerfile.gdal .
+
+      after_script:
+        - docker images
+
+      before_deploy:
+        - echo $PASSWORD | docker login -u $USERNAME --password-stdin
+
+      deploy:
+        provider: script
+        script: docker push $USERNAME/$CONTAINER_IMAGE_PRIMARY:$TRAVIS_COMMIT && docker push $USERNAME/$CONTAINER_IMAGE_PRIMARY:latest
+        on:
+          branch: master
+
+      after_deploy:
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
+
+    - stage: 'Secondary image: Tomcat + Gdal + Grass + PostgreSQL + PostGIS'
+      before_script:
+        - export BUILD_DATE=$(date '+%d/%m/%Y %T UTC' -u)
+        - docker pull $USERNAME/$CONTAINER_IMAGE_SECONDARY:latest || true
+
+      script:
+        - docker build --cache-from $USERNAME/$CONTAINER_IMAGE_SECONDARY:latest --build-arg BUILD_DATE="${BUILD_DATE}" --build-arg TRAVIS_COMMIT="${TRAVIS_COMMIT}" --tag $USERNAME/$CONTAINER_IMAGE_SECONDARY:$TRAVIS_COMMIT --tag $USERNAME/$CONTAINER_IMAGE_SECONDARY:latest -f Dockerfile.gdal_postgis .
+
+      after_script:
+        - docker images
+
+      before_deploy:
+        - echo $PASSWORD | docker login -u $USERNAME --password-stdin
+
+      deploy:
+        provider: script
+        script: docker push $USERNAME/$CONTAINER_IMAGE_SECONDARY:$TRAVIS_COMMIT && docker push $USERNAME/$CONTAINER_IMAGE_SECONDARY:latest
+        on:
+          branch: master
+
+      after_deploy:
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
+
+    - stage: 'Tertiary image: Tomcat + Gdal + Grass + PostgreSQL + PostGIS + R + RGeoLibs'
+      before_script:
+        - export BUILD_DATE=$(date '+%d/%m/%Y %T UTC' -u)
+        - docker pull $USERNAME/$CONTAINER_IMAGE_TERTIARY:latest || true
+
+      script:
+        - docker build --cache-from $USERNAME/$CONTAINER_IMAGE_TERTIARY:latest --build-arg BUILD_DATE="${BUILD_DATE}" --build-arg TRAVIS_COMMIT="${TRAVIS_COMMIT}" --tag $USERNAME/$CONTAINER_IMAGE_TERTIARY:$TRAVIS_COMMIT --tag $USERNAME/$CONTAINER_IMAGE_TERTIARY:latest -f Dockerfile.gdal_postgis_r .
+
+      after_script:
+        - docker images
+
+      before_deploy:
+        - echo $PASSWORD | docker login -u $USERNAME --password-stdin
+
+      deploy:
+        provider: script
+        script: docker push $USERNAME/$CONTAINER_IMAGE_TERTIARY:$TRAVIS_COMMIT && docker push $USERNAME/$CONTAINER_IMAGE_TERTIARY:latest
+        on:
+          branch: master
+
+      after_deploy:
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
