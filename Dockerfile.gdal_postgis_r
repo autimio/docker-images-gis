@@ -1,0 +1,27 @@
+FROM autimio/tomcat-gdal-grass-postgis:latest
+
+# R installation
+RUN apt-get -y install r-base r-base-dev
+
+# libs R installation
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile \
+    && Rscript -e "install.packages('sp', dependencies=TRUE)" \
+    && Rscript -e "install.packages('png', dependencies=TRUE)" \
+    && Rscript -e "install.packages('jpeg', dependencies=TRUE)" \
+    && Rscript -e "install.packages('rgeos', dependencies=TRUE)" \
+    && Rscript -e "install.packages('rgdal', dependencies=TRUE)" \
+    && Rscript -e "install.packages('spdep', dependencies=TRUE)" \
+    && Rscript -e "install.packages('rjson', dependencies=TRUE)" \
+    && Rscript -e "install.packages('raster', dependencies=TRUE)" \
+    && Rscript -e "install.packages('inline', dependencies=TRUE)" \
+    && Rscript -e "install.packages('rgrass7', dependencies=TRUE)" \
+    && Rscript -e "install.packages('plotrix', dependencies=TRUE)" \
+    && Rscript -e "install.packages('stringi', dependencies=TRUE)" \
+    && Rscript -e "install.packages('plotKML', dependencies=TRUE)" \
+    && Rscript -e "install.packages('kriging', dependencies=TRUE)" \
+    && Rscript -e "install.packages('maptools', dependencies=TRUE)" \
+    && Rscript -e "install.packages('jsonlite', dependencies=TRUE)" \
+    && Rscript -e "install.packages('gdalUtils', dependencies=TRUE)" \
+    && Rscript -e "install.packages('geosphere', dependencies=TRUE)"
+
+EXPOSE 8080
