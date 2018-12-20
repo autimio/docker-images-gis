@@ -24,13 +24,13 @@ RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; 
     && Rscript -e "install.packages('gdalUtils', dependencies=TRUE)" \
     && Rscript -e "install.packages('geosphere', dependencies=TRUE)"
 
-ARG BUILD_DATE=$BUILD_DATE
-ARG TRAVIS_COMMIT=$TRAVIS_COMMIT
+ARG BUILD_DATE=unknown
+ARG TRAVIS_COMMIT=unknown
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
           org.label-schema.name="Web, GIS and image processing Docker Image" \
           org.label-schema.description="SGS Docker image for Web, GIS and image processing" \
-          org.label-schema.url="https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass-postgis-r" \
+          org.label-schema.url="https://hub.docker.com/r/autimio/tomcat-gdal-grass-postgis-r" \
           org.label-schema.vcs-ref=$TRAVIS_COMMIT \
           org.label-schema.vcs-url="https://github.com/autimio/docker-images-gis" \
           org.label-schema.vendor="Autímio Meira Brito Filho" \
