@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/autimio/docker-images-gis.svg?branch=master)](https://travis-ci.com/autimio/docker-images-gis)
+[![Build Status](https://travis-ci.com/autimio/docker-images-gis.svg?branch=master)](https://travis-ci.com/autimio/docker-images-gis) 
 
 ## Docker image for SGS Web application with GIS and image processing
 
