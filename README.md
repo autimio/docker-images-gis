@@ -4,7 +4,7 @@
 
 Automated build for docker image used by SGS for Web applicatons that requires GIS and image processing.
 
-## Image: autimio/tomcat-gdal-grass (Dockerfile.gdal)
+## Image: autimio/web-gis-imageprocessing-gdal-grass (Dockerfile.gdal)
 This image is based on tomcat:8.5 and contains:
  - GDAL
  - GRASS7
@@ -12,11 +12,11 @@ This image is based on tomcat:8.5 and contains:
  
  #### DockerHub
 
-`docker pull autimio/tomcat-gdal-grass`
+`docker pull autimio/web-gis-imageprocessing-gdal-grass`
 
-https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass
+https://cloud.docker.com/repository/docker/autimio/web-gis-imageprocessing-gdal-grass
 
-## Image: autimio/tomcat-gdal-grass-postgis (Dockerfile.gdal_postgis)
+## Image: autimio/web-gis-imageprocessing-gdal-grass-postgis (Dockerfile.gdal_postgis)
 This image is based on autimio/tomcat-gdal-grass:latest and contains:
  - GDAL
  - GRASS7
@@ -26,11 +26,11 @@ This image is based on autimio/tomcat-gdal-grass:latest and contains:
  
  #### DockerHub
 
-`docker pull autimio/tomcat-gdal-grass-postgis`
+`docker pull autimio/web-gis-imageprocessing-gdal-grass-postgis`
 
-https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass-postgis
+https://cloud.docker.com/repository/docker/autimio/web-gis-imageprocessing-gdal-grass-postgis
 
-## Image: autimio/tomcat-gdal-grass-postgis-r (Dockerfile.gdal_postgis_r)
+## Image: autimio/web-gis-imageprocessing-gdal-grass-postgis-r (Dockerfile.gdal_postgis_r)
 This image is based on autimio/tomcat-gdal-grass-postgis:latest and contains:
  - GDAL
  - GRASS7
@@ -41,11 +41,11 @@ This image is based on autimio/tomcat-gdal-grass-postgis:latest and contains:
  
  #### DockerHub
 
-`docker pull autimio/tomcat-gdal-grass-postgis-r`
+`docker pull autimio/web-gis-imageprocessing-gdal-grass-postgis-r`
 
-https://cloud.docker.com/repository/docker/autimio/tomcat-gdal-grass-postgis-r
+https://cloud.docker.com/repository/docker/autimio/web-gis-imageprocessing-gdal-grass-postgis-r
 
 Tags are defined by commit hash and latest is always up-to-date with master branch. Check DockerHub repository to all tags available.
 
-
+## License
 Feel free to use, extend and submit a pull request.
