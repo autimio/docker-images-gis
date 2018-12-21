@@ -4,9 +4,9 @@ services:
   - docker
 env:
   global:
-    - CONTAINER_IMAGE_PRIMARY=tomcat-gdal-grass
-    - CONTAINER_IMAGE_SECONDARY=tomcat-gdal-grass-postgis
-    - CONTAINER_IMAGE_TERTIARY=tomcat-gdal-grass-postgis-r
+    - CONTAINER_IMAGE_PRIMARY=web-gis-imageprocessing-gdal-grass
+    - CONTAINER_IMAGE_SECONDARY=web-gis-imageprocessing-gdal-grass-postgis
+    - CONTAINER_IMAGE_TERTIARY=web-gis-imageprocessing-gdal-grass-postgis-r
 
 jobs:
   include:
@@ -31,7 +31,7 @@ jobs:
           branch: master
 
       after_deploy:
-        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/tomcat-gdal-grass/mVaAVk_28YRugrX0DqO_skhl9FQ=
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
 
     - stage: 'Secondary image: Tomcat + Gdal + Grass + PostgreSQL + PostGIS'
       before_script:
@@ -77,4 +77,4 @@ jobs:
           branch: master
 
       after_deploy:
-        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/tomcat-gdal-grass-postgis-r/ivrpv4H3Trkn9UkrDsZmHPDfeW8=
+        - curl --header "Content-Type: application/json" --request POST --data '{}' https://hooks.microbadger.com/images/autimio/postgis/hash
